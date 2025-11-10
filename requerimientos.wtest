@@ -1,0 +1,42 @@
+import aparatos.*
+import pacientes.*
+
+
+
+describe "requerimientos" {
+  // pacientes 
+  const pacient0 = new Paciente(edad = 25, nivelFortalezaMuscular = 50, nivelDolor = 20)  
+  const pacient1 = new Paciente(edad = 7, nivelFortalezaMuscular = 5, nivelDolor = 6)  
+  const pacient2 = new Paciente(edad = 65, nivelFortalezaMuscular = 10, nivelDolor = 10)  
+  // aparatos
+  const magneto1 = new Magneto ()
+  const bicicleta1 = new Bicicleta ()
+  const minitreamp1 = new Minitramp ()
+
+
+
+  test "descriptionsaber si un paciente puede usar un aparato paciente0 puede usar magneto1" {
+    assert.that(pacient0.puedeUsarAparato(magneto1))
+  }
+  test "descriptionsaber si un paciente puede usar un aparato paciente1 no puede usar bicicleta1" {
+    assert.notThat(pacient1.puedeUsarAparato(bicicleta1))
+  }
+  
+  test "QUE un paciente use un aparato el paciente0 usa magneto1" {
+    pacient0.usarAparato(magneto1)
+    assert.equals(18, pacient0.nivelDolor())
+  }
+
+  test "cambio de nivel de dolor y fortaleza muscular con paciente2 usando Minitramp" {
+    pacient2.usarAparato(minitreamp1)
+    assert.equals(16.5, pacient2.nivelFortalezaMuscular()) // mas 10% de la edad
+  }
+
+  test "cambi de nivel de dolor y fortaleza muscular con paciente2 usando Minitramp" {
+    pacient2.usarAparato(minitreamp1)
+    pacient2.usarAparato(magneto1)
+    pacient2.usarAparato(bicicleta1)
+    assert.equals(5, pacient2.nivelDolor()) // meno 10% - 4
+    assert.equals(19.5, pacient2.nivelFortalezaMuscular()) // mas 10% de la edad + 3
+  }
+}
