@@ -65,7 +65,7 @@ class RapidaRecuperacion inherits Paciente {
     self.recuperacionBruta()
   }
 
-  method recuperacionBruta() { if(self.nivelDolor() < indoloro.dolor()){nivelDolor = indoloro.dolor()}}
+  method recuperacionBruta() {if(self.nivelDolor() > indoloro.dolor()){nivelDolor = nivelDolor - indoloro.dolor()}}
 }
 
 

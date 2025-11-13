@@ -1,4 +1,12 @@
+import colores.*
+import pacientes.*
+
+
+
 class Aparatos {
+    const color 
+
+    method color() = color
     
     method usarAparato(paraPaciente)
 

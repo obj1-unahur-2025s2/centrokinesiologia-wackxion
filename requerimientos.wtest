@@ -3,10 +3,6 @@ import pacientes.*
 import colores.*
 
 
-
-
-
-
 describe "requerimientos" {
   // pacientes 
   const pacient0 = new Paciente(edad = 25, nivelFortalezaMuscular = 50, nivelDolor = 20)  
@@ -116,4 +112,48 @@ describe "test parte 2" {
 
     assert.notThat(milena.puedehacerLaRutina())
   }
+}
+
+describe "test parte 3" {
+  // pacientes 
+  const nicolas = new Resistente(edad = 40, nivelDolor = 10, nivelFortalezaMuscular = 20, 
+    rutinaDelPaciente = [bicicleta1, bicicleta1, minitreamp1, magneto1])
+  const victoria = new Caprichoso(edad = 30, nivelDolor = 10, nivelFortalezaMuscular = 40,
+    rutinaDelPaciente = [ minitreamp1, magneto1])
+  const julian = new Caprichoso(edad = 20, nivelDolor = 54, nivelFortalezaMuscular = 50,
+    rutinaDelPaciente = [bicicleta1, magneto1, bicicleta1 ])
+  const zoe = new RapidaRecuperacion(edad = 50, nivelDolor = 14, nivelFortalezaMuscular = 40,
+    rutinaDelPaciente = [ minitreamp1,bicicleta1, bicicleta1, magneto1])
+
+  // aparatos 
+  const magneto1 = new Magneto (color = "verde")
+  const bicicleta1 = new Bicicleta (color = "rojo")
+  const minitreamp1 = new Minitramp (color = "blanco")
+
+
+test "Nicolás puede hacer la rutina que tiene asignada. Después de hacerla una vez, su nivel de dolor baja a 1.8, y su fortaleza sube a 34." {
+  nicolas.hacerRutina()
+  assert.equals(1.8, nicolas.nivelDolor())
+  assert.equals(34, nicolas.nivelFortalezaMuscular())
+ }    
+
+test "Victoria no puede hacer la rutina que tiene asignada." {
+  // error de enunciado no daba rojo
+  assert.notThat(victoria.puedehacerLaRutina())
+}
+
+test "Julián puede hacer la rutina que tiene asignada. Después de hacerla una vez, su nivel de dolor baja a 29.3, y su fortaleza sube a 62." {
+  // error  de enunciado no dan los numeros 
+  
+  julian.hacerRutina()
+  assert.equals(41, julian.nivelDolor())
+  assert.equals(56, julian.nivelFortalezaMuscular())
+}
+
+test "description" {
+  indoloro.modificacionDeDolor(2)
+  zoe.hacerRutina()
+  assert.equals(3.4, zoe.nivelDolor())
+  assert.equals(51, zoe.nivelFortalezaMuscular())
+}
 }
